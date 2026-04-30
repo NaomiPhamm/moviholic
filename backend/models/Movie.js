@@ -25,11 +25,14 @@ const movieSchema = new mongoose.Schema(
     posterUrl: {
       type: String,
       default: ""
+    },
+    averageRating: {
+      type: Number,
+      default: 0
     }
   },
   {
     timestamps: true
   }
 );
-
 module.exports = mongoose.model("Movie", movieSchema);
