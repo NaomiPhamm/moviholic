@@ -1,0 +1,13 @@
+<nav>
+
+  <a routerLink="/movies">Movies</a>
+
+ <span *ngIf="isLoggedIn()">
+  Hello, {{ getUsername() }} |
+  <a routerLink="/profile">Profile</a> |
+  <button (click)="logout()">Logout</button>
+</span>
+
+</nav>
+
+<hr>

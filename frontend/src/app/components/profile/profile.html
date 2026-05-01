@@ -1,0 +1,28 @@
+<h2>User Profile</h2>
+
+<div *ngIf="user">
+
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+
+</div>
+
+<hr>
+
+<h3>My Reviews</h3>
+
+<div *ngIf="reviews.length === 0">
+  No reviews yet.
+</div>
+
+<div *ngFor="let review of reviews">
+
+  <p><strong>Movie:</strong> {{ review.movie.title }}</p>
+
+  <p>Rating: {{ review.rating }}</p>
+
+  <p>{{ review.comment }}</p>
+
+  <hr>
+
+</div>

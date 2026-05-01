@@ -1,0 +1,56 @@
+<div *ngIf="movie">
+
+  <h2>{{ movie.title }}</h2>
+
+  <p><strong>Genre:</strong> {{ movie.genre }}</p>
+  <p><strong>Year:</strong> {{ movie.releaseYear }}</p>
+  <p><strong>Director:</strong> {{ movie.director }}</p>
+  <p><strong>Rating:</strong> {{ movie.averageRating }}</p>
+
+  <p>{{ movie.description }}</p>
+
+  <hr>
+
+  <h3>Reviews</h3>
+
+  <div *ngIf="reviews.length === 0">
+    <p>No reviews yet.</p>
+  </div>
+
+  <div *ngFor="let review of reviews">
+    <p><strong>{{ review.user.username }}</strong></p>
+    <p>Rating: {{ review.rating }}</p>
+    <p>{{ review.comment }}</p>
+    <hr>
+  </div>
+
+  <h3>Add Review</h3>
+
+  <div>
+
+    <label>Rating (1–5):</label>
+    <input
+      type="number"
+      min="1"
+      max="5"
+      [(ngModel)]="newRating"
+    />
+
+    <br><br>
+
+    <label>Comment:</label>
+    <textarea
+      rows="4"
+      cols="40"
+      [(ngModel)]="newComment"
+    ></textarea>
+
+    <br><br>
+
+    <button (click)="submitReview()">
+      Submit Review
+    </button>
+
+  </div>
+
+</div>

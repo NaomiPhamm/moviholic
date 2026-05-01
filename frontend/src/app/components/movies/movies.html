@@ -1,0 +1,19 @@
+<h2>Movie List</h2>
+
+<p>Total movies: {{ movies.length }}</p>
+
+<div *ngFor="let movie of movies">
+  <h3>
+    <a [routerLink]="['/movies', movie._id]">
+      {{ movie.title }}
+    </a>
+  </h3>
+
+  <p>Genre: {{ movie.genre }}</p>
+  <p>Year: {{ movie.releaseYear }}</p>
+  <p>Director: {{ movie.director }}</p>
+  <p>Rating: {{ movie.averageRating }}</p>
+  <p>{{ movie.description }}</p>
+
+  <hr>
+</div>
