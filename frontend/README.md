@@ -1,59 +1,309 @@
-# Frontend
+# 🎬 Moviholic – Full Stack Movie Review Web App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
+## Project Overview
 
-## Development server
+Moviholic is a full-stack movie review web application that allows users to:
 
-To start a local development server, run:
+- Register and login securely
+- Add movies
+- Review movies
+- Edit or delete their reviews
+- Edit or delete their own movies
+- View top-rated movies
+- Search movies
+- See latest reviews in real time
 
-```bash
+This application demonstrates authentication, REST API design, CRUD operations, WebSocket events, and deployment using Render.
+
+---
+
+# 🧰 Tech Stack
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Bcrypt Password Hashing
+- Socket.io (Realtime events)
+
+## Frontend
+
+- Angular (Standalone Components)
+- TypeScript
+- HTML / CSS
+
+---
+
+#  Features
+
+## Authentication
+
+Users can:
+
+- Signup
+- Login
+- Access protected routes
+- View profile information
+
+JWT is used for authentication and route protection.
+
+---
+
+## Movie Model (Full CRUD)
+
+Users can:
+
+- Create movies
+- View movies
+- Update their movies
+- Delete their movies
+
+Fields:
+
+- title
+- genre
+- releaseYear
+- director
+- description
+- posterUrl
+- averageRating
+
+---
+
+## Review Model (Full CRUD)
+
+Users can:
+
+- Add reviews
+- Update reviews
+- Delete reviews
+- View reviews by movie
+- View personal reviews
+
+Fields:
+
+- movie
+- user
+- rating
+- comment
+
+---
+
+## Profile Page
+
+Users can:
+
+- View account info
+- View personal reviews
+- View movies they created
+- Edit reviews
+- Edit movies
+
+---
+
+## Search System
+
+Search movies by:
+
+- title
+- genre
+- director
+- releaseYear
+
+---
+
+## Top Movies Section
+
+Displays top 3 movies sorted by:
+
+- averageRating
+
+---
+
+## Latest Reviews Section
+
+Displays latest reviews sorted by:
+
+- createdAt
+
+---
+
+# ⚡ Real-Time Features (WebSocket)
+
+The application includes real-time updates using Socket.io:
+
+Event 1:
+
+review:created
+
+Triggered when a new review is added.
+
+Event 2:
+
+review:updated
+
+Triggered when a review is edited.
+
+---
+
+#  Environment Variables
+
+Create a `.env` file inside backend:
+
+PORT=5000  
+MONGODB_URI=your_mongodb_connection_string  
+JWT_SECRET=your_secret_key
+
+Never upload secrets to GitHub.
+
+---
+
+# ▶️ Run Backend Locally
+
+Inside backend folder:
+
+npm install  
+npm start
+
+Server runs on:
+
+http://localhost:5000
+
+---
+
+# ▶️ Run Frontend Locally
+
+Inside frontend folder:
+
+npm install  
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+App runs on:
 
-## Code scaffolding
+http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+# 🚀 Deployment (Render)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Backend Deployment
 
-```bash
-ng generate --help
-```
+1. Create Web Service on Render
+2. Connect GitHub repository
+3. Add environment variables:
 
-## Building
+MONGODB_URI  
+JWT_SECRET
 
-To build the project run:
+4. Build command:
 
-```bash
+npm install
+
+5. Start command:
+
+npm start
+
+---
+
+## Frontend Deployment
+
+Inside frontend:
+
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Upload:
 
-## Running unit tests
+dist/frontend
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+as Render Static Site
 
-```bash
-ng test
-```
+Update API URL inside Angular services:
 
-## Running end-to-end tests
+http://localhost:5000
 
-For end-to-end (e2e) testing, run:
+Replace with:
 
-```bash
-ng e2e
-```
+https://your-render-backend-url.onrender.com
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+# 📡 Example API Endpoints
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Auth
+
+POST /api/auth/signup  
+POST /api/auth/login  
+GET /api/auth/me  
+
+---
+
+## Movies
+
+GET /api/movies  
+GET /api/movies/:id  
+POST /api/movies  
+PUT /api/movies/:id  
+DELETE /api/movies/:id  
+
+---
+
+## Reviews
+
+GET /api/reviews  
+GET /api/reviews/movie/:movieId  
+GET /api/reviews/my  
+POST /api/reviews  
+PUT /api/reviews/:id  
+DELETE /api/reviews/:id  
+
+---
+
+# 📁 Project Structure
+
+backend/
+
+- controllers/
+- middleware/
+- models/
+- routes/
+- server.js
+
+frontend/
+
+- components/
+- services/
+- guards/
+- app.routes.ts
+
+---
+
+# 🎥 Video Demonstration Includes
+
+The demo video shows:
+
+- Signup
+- Login
+- Create Movie
+- Update Movie
+- Delete Movie
+- Add Review
+- Update Review
+- Delete Review
+- Profile Page
+- WebSocket live update events
+- Deployed application running on Render
+
+---
+
+# 🌐 Live Deployment
+
+Frontend:
+
+https://your-frontend-url.onrender.com
+
+Backend:
+
+https://your-backend-url.onrender.com

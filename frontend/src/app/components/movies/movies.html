@@ -1,19 +1,90 @@
-<h2>Movie List</h2>
+<div class="home-page">
 
-<p>Total movies: {{ movies.length }}</p>
+  <section class="section">
+    <h2>Top To Watch</h2>
+    <p>Discover movies, read reviews, and share your own ratings.</p>
+    <div class="movie-grid top-grid">
+      <div class="movie-card" *ngFor="let movie of topMovies">
+        <img *ngIf="movie.posterUrl" [src]="movie.posterUrl" alt="{{ movie.title }}" />
 
-<div *ngFor="let movie of movies">
-  <h3>
-    <a [routerLink]="['/movies', movie._id]">
-      {{ movie.title }}
-    </a>
-  </h3>
+        <h3>
+          <a [routerLink]="['/movies', movie._id]">{{ movie.title }}</a>
+        </h3>
 
-  <p>Genre: {{ movie.genre }}</p>
-  <p>Year: {{ movie.releaseYear }}</p>
-  <p>Director: {{ movie.director }}</p>
-  <p>Rating: {{ movie.averageRating }}</p>
-  <p>{{ movie.description }}</p>
+        <p>⭐ {{ movie.averageRating }}</p>
+      </div>
+    </div>
+  </section>
 
-  <hr>
+  <section class="section">
+    <div class="section-header">
+      <h2>Movie List</h2>
+
+      <button routerLink="/add-movie">+ Add Movie</button>
+    </div>
+
+    <input
+      class="search-box"
+      type="text"
+      placeholder="Search movie by title, genre, director..."
+      [(ngModel)]="searchText"
+      (input)="filterMovies()"
+    />
+
+    <p class="total-text">Total movies: {{ filteredMovies?.length || 0 }}</p>
+
+    <div class="movie-grid">
+      <div class="movie-card" *ngFor="let movie of (filteredMovies || []).slice(0, visibleMovieCount)">
+        <img *ngIf="movie.posterUrl" [src]="movie.posterUrl" alt="{{ movie.title }}" />
+
+        <h3>
+          <a [routerLink]="['/movies', movie._id]">{{ movie.title }}</a>
+        </h3>
+
+        <p>{{ movie.genre }}</p>
+        <p>{{ movie.releaseYear }}</p>
+        <p>⭐ {{ movie.averageRating }}</p>
+      </div>
+    </div>
+
+    <button
+      class="see-more"
+      *ngIf="visibleMovieCount < (filteredMovies?.length || 0)"
+      (click)="seeMoreMovies()"
+    >
+      See More Movies
+    </button>
+  </section>
+
+  <section class="section">
+    <h2>Latest Reviews</h2>
+
+    <div *ngIf="latestReviews.length === 0">
+      No reviews yet.
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card" *ngFor="let review of latestReviews.slice(0, visibleReviewCount)">
+        <p>
+          <strong>{{ review.user.username }}</strong>
+          reviewed
+          <a [routerLink]="['/movies', review.movie._id]">
+            {{ review.movie.title }}
+          </a>
+        </p>
+
+        <p>⭐ {{ review.rating }}</p>
+        <p>{{ review.comment }}</p>
+      </div>
+    </div>
+
+    <button
+      class="see-more"
+      *ngIf="visibleReviewCount < (latestReviews?.length || 0)"
+      (click)="seeMoreReviews()"
+    >
+      See More Reviews
+    </button>
+  </section>
+
 </div>

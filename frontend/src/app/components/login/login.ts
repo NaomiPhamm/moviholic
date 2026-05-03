@@ -3,11 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -33,6 +33,7 @@ export class Login {
   this.authService.login(loginData).subscribe({
     next: (res) => {
       this.authService.saveToken(res.token);
+      localStorage.setItem('user', JSON.stringify(res.user));
 
       this.successMessage = 'Login successful';
       this.errorMessage = '';

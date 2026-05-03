@@ -1,0 +1,40 @@
+<div class="add-page">
+
+  <div class="add-card">
+
+    <button type="button" class="back-btn" routerLink="/movies">
+       Back to Movies
+    </button>
+
+    <h2>Add Movie</h2>
+
+    <form (ngSubmit)="addMovie()">
+
+      <label>Title</label>
+      <input type="text" name="title" [(ngModel)]="title" required>
+
+      <label>Genre</label>
+      <input type="text" name="genre" [(ngModel)]="genre" required>
+
+      <label>Release Year</label>
+      <input type="number" name="releaseYear" [(ngModel)]="releaseYear" required>
+
+      <label>Director</label>
+      <input type="text" name="director" [(ngModel)]="director" required>
+
+      <label>Description</label>
+      <textarea name="description" rows="4" [(ngModel)]="description" required></textarea>
+
+      <label>Poster URL</label>
+      <input type="text" name="posterUrl" [(ngModel)]="posterUrl">
+
+      <button type="submit" class="add-btn">Add Movie</button>
+
+    </form>
+
+    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  </div>
+
+</div>

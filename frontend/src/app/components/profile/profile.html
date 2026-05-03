@@ -1,28 +1,58 @@
-<h2>User Profile</h2>
+<div class="profile-page">
 
-<div *ngIf="user">
+  <div class="profile-card" *ngIf="user">
+    <h2>User Profile</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+  </div>
 
-  <p><strong>Username:</strong> {{ user.username }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
+  <section class="profile-section">
+    <h3>My Reviews</h3>
 
-</div>
+    <div *ngIf="reviews.length === 0" class="empty-text">
+      No reviews yet.
+    </div>
 
-<hr>
+    <div class="card-grid">
+      <div class="review-card" *ngFor="let review of reviews.slice(0, visibleReviewCount)">
+        <a [routerLink]="['/reviews', review._id]">
+          <strong>{{ review.movie.title }}</strong>
+        </a>
 
-<h3>My Reviews</h3>
+        <p>⭐ {{ review.rating }}</p>
+        <p>{{ review.comment }}</p>
+      </div>
+    </div>
 
-<div *ngIf="reviews.length === 0">
-  No reviews yet.
-</div>
+    <button *ngIf="visibleReviewCount < reviews.length" (click)="seeMoreReviews()">
+      See More Reviews
+    </button>
+  </section>
 
-<div *ngFor="let review of reviews">
+  <section class="profile-section">
+    <h3>My Movies</h3>
 
-  <p><strong>Movie:</strong> {{ review.movie.title }}</p>
+    <div *ngIf="myMovies.length === 0" class="empty-text">
+      No movies added yet.
+    </div>
 
-  <p>Rating: {{ review.rating }}</p>
+    <div class="card-grid">
+      <div class="movie-card" *ngFor="let movie of myMovies.slice(0, visibleMovieCount)">
+        <img *ngIf="movie.posterUrl" [src]="movie.posterUrl" alt="{{ movie.title }}" />
 
-  <p>{{ review.comment }}</p>
+        <a [routerLink]="['/movies/edit', movie._id]">
+          <strong>{{ movie.title }}</strong>
+        </a>
 
-  <hr>
+        <p>{{ movie.genre }}</p>
+        <p>{{ movie.releaseYear }}</p>
+        <p>⭐ {{ movie.averageRating }}</p>
+      </div>
+    </div>
+
+    <button *ngIf="visibleMovieCount < myMovies.length" (click)="seeMoreMovies()">
+      See More Movies
+    </button>
+  </section>
 
 </div>

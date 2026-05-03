@@ -1,0 +1,35 @@
+<div *ngIf="review" class="edit-review-page">
+
+  <div class="edit-review-card">
+
+    <button class="back-btn" routerLink="/profile">
+      ← Back to Profile
+    </button>
+
+    <h2>Edit Review</h2>
+
+    <p class="movie-title">
+      <strong>Movie:</strong> {{ review.movie?.title }}
+    </p>
+
+    <label>Rating</label>
+    <input type="number" min="1" max="5" [(ngModel)]="rating">
+
+    <label>Comment</label>
+    <textarea rows="4" [(ngModel)]="comment"></textarea>
+
+    <div class="btn-group">
+
+      <button class="update-btn" (click)="updateReview()">
+        Update Review
+      </button>
+
+      <button class="delete-btn" (click)="deleteReview()">
+        Delete Review
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,13 +1,22 @@
-<nav>
+<nav class="navbar">
 
-  <a routerLink="/movies">Movies</a>
+  <div class="logo-area">
+   <img src="assets/logo.png" class="logo" alt="logo" />
+    <span class="brand">Moviholic</span>
+  </div>
 
- <span *ngIf="isLoggedIn()">
-  Hello, {{ getUsername() }} |
-  <a routerLink="/profile">Profile</a> |
-  <button (click)="logout()">Logout</button>
-</span>
+  <div class="nav-links" *ngIf="isLoggedIn()">
+
+    <a routerLink="/movies">Movies</a>
+
+    <span class="welcome">
+      Hello, {{ getUsername() }}
+    </span>
+
+    <a routerLink="/profile">Profile</a>
+
+    <button (click)="logout()">Logout</button>
+
+  </div>
 
 </nav>
-
-<hr>

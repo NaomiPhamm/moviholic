@@ -1,0 +1,42 @@
+<div *ngIf="movie" class="edit-page">
+
+  <div class="edit-card">
+    <button class="back-btn" routerLink="/profile">
+   Back 
+</button>
+
+    <h2>Edit Movie</h2>
+
+    <label>Title</label>
+    <input type="text" [(ngModel)]="title" />
+
+    <label>Genre</label>
+    <input type="text" [(ngModel)]="genre" />
+
+    <label>Release Year</label>
+    <input type="number" [(ngModel)]="releaseYear" />
+
+    <label>Director</label>
+    <input type="text" [(ngModel)]="director" />
+
+    <label>Description</label>
+    <textarea rows="4" [(ngModel)]="description"></textarea>
+
+    <label>Poster URL</label>
+    <input type="text" [(ngModel)]="posterUrl" />
+
+    <div class="btn-group">
+
+      <button class="update-btn" (click)="updateMovie()">
+        Update Movie
+      </button>
+
+      <button class="delete-btn" (click)="deleteMovie()">
+        Delete Movie
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
