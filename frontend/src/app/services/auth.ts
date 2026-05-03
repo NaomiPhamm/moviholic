@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private API_URL = 'http://localhost:5000/api/auth';
+  private API_URL = 'https://moviholic.onrender.com';
 
   constructor(private http: HttpClient) {}
 
