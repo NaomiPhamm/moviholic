@@ -124,11 +124,39 @@ const deleteReview = async (req, res) => {
     res.status(500).json({ message: "Delete review error", error: err.message });
   }
 };
+const getMyReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find({ user: req.user._id })
+      .populate("movie")
+      .populate("user", "username email")
+      .sort({ createdAt: -1 });
 
+    res.json(reviews);
+  } catch (err) {
+    res.status(500).json({ message: "Get my reviews error", error: err.message });
+  }
+};
+const getReviewById = async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id)
+      .populate("movie")
+      .populate("user", "username email");
+
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    res.json(review);
+  } catch (err) {
+    res.status(500).json({ message: "Get review error", error: err.message });
+  }
+};
 module.exports = {
   createReview,
   getReviews,
   getReviewsByMovie,
+  getMyReviews,
   updateReview,
-  deleteReview
+  deleteReview,
+  getReviewById
 };

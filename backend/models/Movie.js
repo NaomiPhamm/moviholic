@@ -29,10 +29,16 @@ const movieSchema = new mongoose.Schema(
     averageRating: {
       type: Number,
       default: 0
+    },
+
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     }
   },
   {
     timestamps: true
   }
 );
+
 module.exports = mongoose.model("Movie", movieSchema);
