@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ReviewService {
 
-  private API_URL = 'https://moviholic.onrender.com';
+private API_URL = 'https://moviholic.onrender.com/api/reviews';
 
   constructor(private http: HttpClient) {}
 
