@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MovieService } from '../../services/movie';
 import { ReviewService } from '../../services/review';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './movie-detail.html',
   styleUrls: ['./movie-detail.css']
 })
